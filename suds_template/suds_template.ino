@@ -32,6 +32,9 @@ void setup() {
 
 void loop() {
 
+  // Don't pick up random noise or a tap on the switch
+  delay(3000);
+  
   // Read the stall switches
   // True if the switch in the stall is closed
   boolean close_status = digitalRead(CLOSE_STALL) == HIGH;
@@ -48,7 +51,7 @@ void loop() {
     close_occupied = !close_occupied;
   }
   if (far_swap) {
-    log_event(FAR_STALL, close_occupied ? EVENT_STALL_EXIT : EVENT_STALL_ENTER);
+    log_event(FAR_STALL, far_occupied ? EVENT_STALL_EXIT : EVENT_STALL_ENTER);
     far_occupied = !far_occupied;
   }
 
