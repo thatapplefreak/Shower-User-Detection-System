@@ -1,6 +1,17 @@
 // Code Running on SUDS arduinos in CSH Bathrooms
 
-const String BATHROOM_ID = "CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+enum bathroom {
+  HANDYCRAPPER,
+  DEEP_SOUTH,
+  SOUTH_VADER,
+  NORTH_VADER,
+  FAR_NORTH,
+  L,
+  WTF
+};
+
+// ID of the bathroom this arduino controls
+const bathroom BATHROOM_ID = WTF;
 
 // Detection Pins
 const int CLOSE_STALL = 12;
@@ -60,7 +71,7 @@ void loop() {
 }
 
 void log_event(int stall, int event) {
-  String message = "EVENT: User has ";
+  String message = "SUDS Event: User has ";
   switch (event) {
     case EVENT_STALL_ENTER:
       message += "entered";
@@ -78,6 +89,21 @@ void log_event(int stall, int event) {
       message += "far";
       break;
   }
-  message += " stall";
+  message += " stall in the ";
+  if(BATHROOM_ID == HANDYCRAPPER) {
+    message += "Handycrapper";
+  } else if(BATHROOM_ID == DEEP_SOUTH) {
+    message += "deep south bathroom";
+  } else if(BATHROOM_ID == SOUTH_VADER) {
+    message += "south vader bathroom";
+  } else if(BATHROOM_ID == NORTH_VADER) {
+    message += "north vader bathroom";
+  } else if(BATHROOM_ID == FAR_NORTH) {
+    message += "far north bathroom";
+  } else if(BATHROOM_ID == L) {
+    message += "L bathroom";
+  } else if(BATHROOM_ID == WTF) {
+    message += "MYSTICAL GHOST BATHROOM OF LEGEND";
+  }
   Serial.println(message);
 }
